@@ -33,7 +33,7 @@ The housing chatbot aims to recommend the most suitable properties for the users
 
 ### 1. Setup the environment
 - `Python >=3.11`.
-- `pip install langgraph langchain-google-genai dotenv chainlit geopy scipy openrouteservice pandas folium geopandas`.
+- `pip install langgraph langchain langchain-google-genai dotenv chainlit geopy scipy openrouteservice pandas folium geopandas seaborn`.
 - Add your Gemini API key and GTFS API key in the `.env` file.
 
 ### 2. Download GTFS data (for the first time only)
@@ -44,9 +44,3 @@ The housing chatbot aims to recommend the most suitable properties for the users
 
 ### 4. Run on UI
 `chainlit run app.py -w`
-
-## Future development
-Future plans for the chatbot might include: 
-1. Live listing data through API or crawling pipelines; 
-2. Full distance/travelling time for public transportation, including trams and buses (Right now, it only handles walking, driving, and travelling by trains);
-3. Enable for buying use case (it's only built for rental right now).

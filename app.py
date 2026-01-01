@@ -1,7 +1,7 @@
 from typing import cast
 import chainlit as cl
 
-from langchain.schema.runnable.config import RunnableConfig
+from langchain_core.runnables import RunnableConfig
 from langchain_core.messages import AIMessage, HumanMessage
 
 from langgraph.graph.state import CompiledStateGraph
