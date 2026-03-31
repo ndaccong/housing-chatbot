@@ -2,6 +2,7 @@
 **/.chainlit
 **/.files
 /.DS_Store
+**/.DS_Store
 /.env
 /.venv
 /data/temp_data.csv
