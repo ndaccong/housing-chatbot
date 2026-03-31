@@ -23,6 +23,7 @@ load_dotenv()
 NUM_MAX_LOOP = 5
 HOUSING_DATA_PTH = "data/housing_data_preprocessed.csv"
 DATA_PTH = "data/temp_data.csv"
+MODEL = "gemini-2.5-flash-lite"
 
 class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
@@ -31,7 +32,7 @@ class AgentState(TypedDict):
     data_pth: str
     
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
+    model=MODEL,
     temperature=0,
 )
 structured_llm = llm.with_structured_output(PropertyDetails)

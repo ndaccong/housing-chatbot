@@ -1,5 +1,6 @@
 from typing import cast
 import chainlit as cl
+import os
 
 from langchain_core.runnables import RunnableConfig
 from langchain_core.messages import AIMessage, HumanMessage
@@ -8,10 +9,21 @@ from langgraph.graph.state import CompiledStateGraph
 from langgraph.types import Command
 
 from chatbot.graph import create_graph
+from utils.utils import API_GTFS
 
 
 @cl.on_chat_start
 async def on_chat_start():
+    # Download data if not exist
+    ptv_data = ["stops.csv", "stop_times.csv", "routes.csv", "trips.csv"]
+    data_check = True
+    for data in ptv_data:
+        if not os.path.exists(f"data/{data}"):
+            data_check = False
+
+    if not data_check:
+        API_GTFS.download_and_extract_data()
+    
     cl.user_session.set("messages", [])
     agent = await get_chat_agent()
     cl.user_session.set("agent", agent)
@@ -72,3 +84,4 @@ async def on_message(message: cl.Message):
 async def get_chat_agent() -> CompiledStateGraph:
     graph = create_graph()
     return graph
+

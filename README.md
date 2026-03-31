@@ -2,7 +2,7 @@
 
 ## Overview
 
-The housing chatbot aims to recommend the most suitable properties for the users based on their preferences. Besides basic information such as property type (House, Apartment), rental fee, number of bedrooms/bathrooms, etc, it can handle queries that include distance and travelling time from the properties to other places (such as Deakin University), in both driving and public transportation mode, which listing sites such as [realestate.com.au](realestate.com.au) currently do not support. In trimester 2 - 2025, our team has built the chatbot that could recommend properties based on a static crawled listing, it can handle multi-turn conversations where the user query is too vague (e.g. "I want to find a room") so that it could understand more about user's preferences. Based on the preferences, including basic information and distance/time to other places, the chatbot uses a simple ranking model with linear regression to rank the properties. The chatbot is built with LangGraph, with Gemini Flash 2.0 as the core LLM. The UI is build with Chainlit.
+The housing chatbot aims to recommend the most suitable properties for users based on their preferences. Besides basic information such as property type (House, Apartment), rental fee, number of bedrooms/bathrooms, etc., it can handle queries that include distance and travelling time from the properties to other places (such as Deakin University), in both driving and public transportation mode, which listing sites such as [realestate.com.au](realestate.com.au) currently do not support. The chatbot can handle multi-turn conversations where user's query is too vague (e.g. "I want to find a room") so that it could understand more about user's preferences. Based on the preferences, including basic information and distance/time to other places, the chatbot uses a simple ranking model with linear regression to rank the properties. The chatbot is built with LangGraph, with Gemini Flash 2.5 as the core LLM. The UI is build with Chainlit.
 
 **Flowchat**:
 
@@ -23,8 +23,7 @@ The housing chatbot aims to recommend the most suitable properties for the users
 ├── tests # Some test cases
 ├── utils/
 │   └── utils # Data processing pipelines
-├── .env
-├── app.py # Chainlit app
+├── main.py # Chainlit app
 ├── get_data.py # To download GTFS data
 └── runner.py # To run the chatbot on terminal
 ```
@@ -33,14 +32,16 @@ The housing chatbot aims to recommend the most suitable properties for the users
 
 ### 1. Setup the environment
 - `Python >=3.11`.
-- `pip install langgraph langchain langchain-google-genai dotenv chainlit geopy scipy openrouteservice pandas folium geopandas seaborn`.
+- `uv add -r requirements.txt`.
 - Add your Gemini API key and GTFS API key in the `.env` file.
 
 ### 2. Download GTFS data (for the first time only)
-`python get_data.py`
+`uv run python get_data.py`
+
+Even if you forget to run this, the app will download the data if they don't exist. However, it may cause the application to freeze for a few minutes while downloading.
 
 ### 3. Run the code on terminal (for testing purposes)
-`python runner.py`
+`uv run python runner.py`
 
 ### 4. Run on UI
-`chainlit run app.py -w`
+`uv run chainlit run main.py -w`
