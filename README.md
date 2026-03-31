@@ -23,8 +23,7 @@ The housing chatbot aims to recommend the most suitable properties for the users
 ├── tests # Some test cases
 ├── utils/
 │   └── utils # Data processing pipelines
-├── .env
-├── app.py # Chainlit app
+├── main.py # Chainlit app
 ├── get_data.py # To download GTFS data
 └── runner.py # To run the chatbot on terminal
 ```
@@ -33,14 +32,16 @@ The housing chatbot aims to recommend the most suitable properties for the users
 
 ### 1. Setup the environment
 - `Python >=3.11`.
-- `pip install langgraph langchain langchain-google-genai dotenv chainlit geopy scipy openrouteservice pandas folium geopandas seaborn`.
+- `uv add -r requirements.txt`.
 - Add your Gemini API key and GTFS API key in the `.env` file.
 
 ### 2. Download GTFS data (for the first time only)
-`python get_data.py`
+`uv run python get_data.py`
+
+Even if you forget to run this, the app will download the data if they don't exist. However, it may cause the application to freeze for a few minutes while downloading.
 
 ### 3. Run the code on terminal (for testing purposes)
-`python runner.py`
+`uv run python runner.py`
 
 ### 4. Run on UI
-`chainlit run app.py -w`
+`uv run chainlit run main.py -w`

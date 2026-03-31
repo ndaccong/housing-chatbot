@@ -3,3 +3,9 @@
 **/.files
 /.DS_Store
 /.env
+/.venv
+/data/temp_data.csv
+/data/stops.csv
+/data/stop_times.csv
+/data/routes.csv
+/data/trips.csv
