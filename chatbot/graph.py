@@ -154,7 +154,10 @@ def show_data_output(state: AgentState) -> AgentState:
     if num_properties == 0:
         message = f"Unfortunately, there is no available property that matches your search. Please try again with another query."
     else:
-        message = f"We have found {num_properties} properties that matches your query.\n"
+        if num_properties == 1:
+            message = f"We have found {num_properties} property that matches your query.\n"
+        else:
+            message = f"We have found {num_properties} properties that matches your query.\n"
         for i in range(num_properties):
             message += f"{i+1}. Address: {data.iloc[i, :]['Address']}. Type: {data.iloc[i, :]['Type of property']} with {data.iloc[i, :]['Number of bedrooms']} bedrooms and {data.iloc[i, :]['Number of bathrooms']} bathrooms. Price per week: ${data.iloc[i, :]['Price pw']}.\n"
     

@@ -45,3 +45,6 @@ Even if you forget to run this, the app will download the data if they don't exi
 
 ### 4. Run on UI
 `uv run chainlit run main.py -w`
+
+## Demo
+<img src="docs/demo.png" width="600">
